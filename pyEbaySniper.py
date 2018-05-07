@@ -715,6 +715,7 @@ class EbayArticleBidPage():
             )
             confirm_button.click()
         except Exception as e:
+            self.driver.save_screenshot('screenshot.png')
             try:
                 msg = self.driver.find_element_by_xpath('//p[contains(@class, "sm-md mi-er")]').text
             except:
