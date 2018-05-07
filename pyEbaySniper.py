@@ -706,8 +706,12 @@ class EbayArticleBidPage():
     def confirm_bid(self):
         ''' Presses the confirmation button '''
         try:
+            bid_button = WebDriverWait(self.driver, 5).until(
+                EC.element_to_be_clickable((By.XPATH, '//a[contains(@id, "bidBtn_btn")]'))
+            )
+            bid_button.click()
             confirm_button = WebDriverWait(self.driver, 5).until(
-                EC.element_to_be_clickable((By.XPATH, '//a[contains(@id, "reviewBidSec_btn")]'))
+                EC.element_to_be_clickable((By.XPATH, '//a[contains(@class, "component-button")]'))
             )
             confirm_button.click()
         except Exception as e:
