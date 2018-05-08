@@ -709,13 +709,15 @@ class EbayArticleBidPage():
             bid_button = WebDriverWait(self.driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, '//a[contains(@id, "bidBtn_btn")]'))
             )
+            self.driver.save_screenshot('screenshot-bid-button.png')
             bid_button.click()
             confirm_button = WebDriverWait(self.driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, '//a[contains(@class, "component-button")]'))
             )
+            self.driver.save_screenshot('screenshot-confirm-bid-button.png')
             confirm_button.click()
         except Exception as e:
-            self.driver.save_screenshot('screenshot.png')
+            self.driver.save_screenshot('screenshot-crash.png')
             try:
                 msg = self.driver.find_element_by_xpath('//p[contains(@class, "sm-md mi-er")]').text
             except:
