@@ -782,6 +782,8 @@ class EbayLoginPage():
         if not login_form_pass_input:
             raise Exception("Could not find password input field, try editing 'LOGIN_FIELD_USER_RE' variable")
 
+        self.driver.save_screenshot('screenshot-before-login.png')
+
         login_form_pass_input.send_keys(password)
         login_form_user_input.send_keys(user)
         login_form_user_input.submit()
@@ -790,6 +792,8 @@ class EbayLoginPage():
             if self.driver.current_url != old_url:
                 break
             time.sleep(1)
+
+        self.driver.save_screenshot('screenshot-after-login.png')
 
         try: # check for error message
             error_msg = self.driver.find_element_by_xpath('//span[@class="sd-err"]')
