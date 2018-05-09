@@ -141,6 +141,20 @@ def main():
         for f in args.file:
             shell_source(f)
 
+    set_headers()
+
+def set_headers():
+    headers = { 'Accept':'*/*',
+        'Accept-Encoding':'gzip, deflate, sdch',
+        'Accept-Language':'en-US,en;q=0.8',
+        'Cache-Control':'max-age=0',
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
+    }
+
+    for key, value in enumerate(headers):
+        capability_key = 'phantomjs.page.customHeaders.{}'.format(key)
+        webdriver.DesiredCapabilities.PHANTOMJS[capability_key] = value
+
 def read_script(input_stream):
     while True:
         line = input_stream.readline()
