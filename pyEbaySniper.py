@@ -605,6 +605,14 @@ class BidThread(threading.Timer):
         finally:
             driver.quit()
 
+    def dump_page(self, filename):
+        driver = get_driver()
+        with open(filename, 'w') as f:
+            f.write('<!-- ')
+            f.write(driver.current_url)
+            f.write("-->\n")
+            f.write(driver.page_source)
+
     def get_status(self):
         if self.bidded:
             return "Done"
