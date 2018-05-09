@@ -570,6 +570,8 @@ class BidThread(threading.Timer):
                 except:
                     login_page.login(user, password) # try again if failed
 
+            self.dump_page('/tmp/dump-before-bid.html')
+
             article_page = EbayArticleBidPage(driver, self.url)
 
             self.log("Entering bid ", write_price(self.bid), ('(dry)' if self.dry else ''), "...")
